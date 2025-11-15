@@ -1,6 +1,6 @@
 import xss from 'xss';
 
-const sanitizeInput = (req, res, next) => {
+const sanitizeInput = async (req, res, next) => {
   try {
     const dangerousPatterns = [
       /(\b(SELECT|INSERT|UPDATE|DELETE|DROP|ALTER|CREATE|TRUNCATE|EXEC|UNION|--|;)\b)/i, // SQL injection
