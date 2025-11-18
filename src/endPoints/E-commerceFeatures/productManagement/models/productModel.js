@@ -4,7 +4,7 @@ const ProductModel = new BaseModel('products', [
     'id UUID PRIMARY KEY DEFAULT gen_random_uuid()',
     'name VARCHAR(255) NOT NULL',
     'description TEXT',
-    'price_per_kg FLOAT NOT NULL',
+    'price_id UUID REFERENCES prices(id) ON DELETE CASCADE',
     'stock FLOAT NOT NULL',
     'grade VARCHAR(100)',
     'origin VARCHAR(100)',

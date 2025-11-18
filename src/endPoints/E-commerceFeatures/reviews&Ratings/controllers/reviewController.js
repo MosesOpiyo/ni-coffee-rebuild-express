@@ -3,7 +3,7 @@ const ReviewRepository = require('../models/Reviews/reviewsRepository')
 class ReviewController {
     async getAllReviews (req, res) {
         try {
-            const reviews = await ReviewRepository.findAll();
+            const reviews = await ReviewRepository.findAll;
             if (!reviews) {
                 return res.status(404).json({ error: 'No reviews found' });
             } else {
@@ -17,7 +17,7 @@ class ReviewController {
     async getReviewByProductId (req, res) {
         try {
             const { id } = req.params;
-            const review = await ReviewRepository.findByProductId(id);
+            const review = await ReviewRepository.findMany('product_id', id);
             if (!review) {
                 return res.status(404).json({ error: 'Batch not found' });
             }

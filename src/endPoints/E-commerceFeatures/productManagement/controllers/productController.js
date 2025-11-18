@@ -3,7 +3,7 @@ const ProductRepository = require('../models/productRepository');
 class ProductController {
     async getAllProducts(req, res) {
         try {
-            const products = await ProductRepository.getAllProducts();
+            const products = await ProductRepository.findAll;
             if (!products) {
                 return res.status(404).json({ error: 'No products found' });
             } else {
@@ -15,7 +15,7 @@ class ProductController {
     async getProductById(req, res) {
         try {
             const { id } = req.params;
-            const product = await ProductRepository.getProductById(id);
+            const product = await ProductRepository.findById(id);
             if (!product) {
                 return res.status(404).json({ error: 'Product not found' });
             }
@@ -27,7 +27,7 @@ class ProductController {
     async createProduct(req, res) {
         try {
             const productData = req.body;
-            const product = await ProductRepository.createProduct(productData);
+            const product = await ProductRepository.create(productData);
             res.status(201).json(product);
         } catch (error) {
             res.status(500).json({ error: error.message });
@@ -38,7 +38,7 @@ class ProductController {
         try {
             const { id } = req.params;
             const productData = req.body;
-            const product = await ProductRepository.updateProduct(id, productData);
+            const product = await ProductRepository.update(id, productData);
             if (!product) {
                 return res.status(404).json({ error: 'Product not found' });
             } else {
@@ -51,7 +51,7 @@ class ProductController {
     async deleteProduct(req, res) {
         try {
             const { id } = req.params;
-            const result = await ProductRepository.deleteProduct(id);
+            const result = await ProductRepository.delete(id);
             res.status(200).json(result);
         } catch (error) {
             res.status(500).json({ error: error.message });
