@@ -1,7 +1,7 @@
 const express = require('express');
 
 const CartItemController = require('../controllers/cartItemController');
-const limiter = require('../../../../middleware/rateLimitingMiddleware');
+const { limiter } = require('../../../../middleware/rateLimitingMiddleware');
 const { verifyToken, verifyRole } = require('../../../../middleware/authMiddleware');
 
 const ROLES = require('../../../auth/middleware/roles');

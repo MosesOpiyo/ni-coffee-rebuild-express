@@ -1,7 +1,7 @@
 const express = require('express');
 const DocumentController = require('../controllers/documentController');
 const { verifyToken, verifyRole } = require('../../../auth/middleware/middleware');
-const limiter = require('../../../../middleware/rateLimitingMiddleware')
+const { limiter } = require('../../../../middleware/rateLimitingMiddleware')
 const ROLES = require('../../../auth/middleware/roles');
 
 const documentRouter = express.Router();

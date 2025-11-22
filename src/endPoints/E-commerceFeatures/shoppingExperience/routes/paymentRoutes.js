@@ -1,6 +1,6 @@
 const express = require('express');
 const PaymentController = require('../controllers/paymentController');
-const limiter = require('../../../../middleware/rateLimitingMiddleware')
+const { limiter } = require('../../../../middleware/rateLimitingMiddleware')
 const PaymentRouter = express.Router();
 
 // Routes

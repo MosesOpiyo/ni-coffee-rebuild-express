@@ -75,31 +75,26 @@ app.use('/api/contracts', ContractRouter);
 //Product Management
 app.use('/api/products',ProductRouter)
 app.use('/api/prices',PriceRouter)
-app.use('api/product/reviews', ReviewRouter)
+app.use('/api/product/reviews', ReviewRouter)
 
 //Shopiing Experiences
-app.use('api/shopping-experience/cart', CartRouter);
-app.use('api/shopping-experience/cart-items', CartItemRouter);
-app.use('api/shopping-experience/orders', OrderRouter);
-app.use('api/shopping-experience/wishlists', wishListRouter);
-app.use('api/shopping-experience/wishlist-items', wishListItemRouter);
-app.use('api/shopping-experience/payment', PaymentRouter);
+app.use('/api/shopping-experience/cart', CartRouter);
+app.use('/api/shopping-experience/cart-items', CartItemRouter);
+app.use('/api/shopping-experience/orders', OrderRouter);
+app.use('/api/shopping-experience/wishlists', wishListRouter);
+app.use('/api/shopping-experience/wishlist-items', wishListItemRouter);
+app.use('/api/shopping-experience/payment', PaymentRouter);
 
 //Travel Logistics
-app.use('api/trips-&-events/travel-logistics/pricing', PricingRouter)
-app.use('api/trips-&-events/travel-logistics/trips', TripRouter)
+app.use('/api/trips-&-events/travel-logistics/pricing', PricingRouter)
+app.use('/api/trips-&-events/travel-logistics/trips', TripRouter)
 
 //Trip management
-app.use('api/trips-&-events/trip-management/hotels', HotelRouter)
-app.use('api/trips-&-events/trip-management/over-land-travel', OverlandTravelRouter)
+app.use('/api/trips-&-events/trip-management/hotels', HotelRouter)
+app.use('/api/trips-&-events/trip-management/over-land-travel', OverlandTravelRouter)
 
 //User Engagement
-app.use('api/trips-&-events/user-engagement/booking', BookingRouter)
+app.use('/api/trips-&-events/user-engagement/booking', BookingRouter)
 
-
-// Basic route
-app.get('/', (req, res) => {
-  res.json({ message: 'Welcome to the NICE backend API' });
-});
 
 server.listen(port)

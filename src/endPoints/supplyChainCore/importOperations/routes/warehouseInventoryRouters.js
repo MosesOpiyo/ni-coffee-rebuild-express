@@ -1,7 +1,7 @@
 const express = require('express');
 const WarehouseInventoryController = require('../controllers/warehouseInventoryController');
 const { verifyToken, verifyRole } = require('../../../auth/middleware/middleware');
-const limiter = require('../../../../middleware/rateLimitingMiddleware')
+const { limiter } = require('../../../../middleware/rateLimitingMiddleware')
 const ROLES = require('../../../auth/middleware/roles');
 
 const warehouseInventoryRouter = express.Router();

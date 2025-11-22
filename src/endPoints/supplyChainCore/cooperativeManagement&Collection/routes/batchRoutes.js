@@ -1,7 +1,7 @@
 const express = require('express');
 const BatchController = require('../controllers/batchController');
 const { verifyToken, verifyRole } = require('../../../auth/middleware/middleware');
-const limiter = require('../../../../middleware/rateLimitingMiddleware')
+const { limiter } = require('../../../../middleware/rateLimitingMiddleware')
 const batchRouter = express.Router();
 const ROLES = require('../../../auth/middleware/roles');
 

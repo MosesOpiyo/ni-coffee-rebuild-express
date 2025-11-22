@@ -1,4 +1,4 @@
-import xss from 'xss';
+const xss = require('xss');
 
 const sanitizeInput = async (req, res, next) => {
   try {

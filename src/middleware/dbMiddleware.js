@@ -13,6 +13,7 @@ const ShipmentModel = require('../endPoints/supplyChainCore/importOperations/mod
 const WarehouseInventoryModel = require('../endPoints/supplyChainCore/importOperations/models/WarehouseInventory/warehouseInventoryModel');
 
 const ProductModel = require('../endPoints/E-commerceFeatures/productManagement/models/productModel');
+const PriceModel = require('../endPoints/E-commerceFeatures/productManagement/models/priceModel');
 const ReviewModel = require('../endPoints/E-commerceFeatures/reviews&Ratings/models/Reviews/reviewsModel');
 const OrderModel = require('../endPoints/E-commerceFeatures/shoppingExperience/models/Orders/ordersModel');
 
@@ -28,31 +29,55 @@ const HotelModel = require('../endPoints/TripsAndEvents/tripManagement/models/Ho
 const OverLandTravelModel = require('../endPoints/TripsAndEvents/tripManagement/models/OverLandTravels/overLandTravelModel');
 const BookingModel = require('../endPoints/TripsAndEvents/userEngagement/models/Bookings/bookingModel');
 
+const users = new UserModel();
+const batches = new BatchModel();
+const cooperatives = new CooperativeModel();
+const deliveries = new DeliveryModel();
+const quality_reports = new QualityReportModel();
+const export_orders =  new ExportOrderModel();
+const shipments = new ShipmentModel();
+const warehouse_inventory = new WarehouseInventoryModel();
+const products = new ProductModel();
+const prices = new PriceModel();
+const reviews = new ReviewModel();
+const orders = new OrderModel();
+const carts = new CartModel();
+const cart_items = new CartItemModel();
+const wish_lists = new WishListModel();
+const wishList_item = new WishListItemModel();
+const payments = new PaymentModel();
+const documents = new DocumentModel();
+const pricing = new PricingModel();
+const trips = new TripModel();
+const hotels = new HotelModel();
+const overland_travels = new OverLandTravelModel();
+const bookings = new BookingModel();
+
 
 const models = [
-  UserModel,
-  CooperativeModel,
-  BatchModel,
-  DeliveryModel,
-  QualityReportModel,
-  ExportOrderModel,
-  ProductModel,
-  ReviewModel,
-  OrderModel,
-  CartModel,
-  CartItemModel,
-  WishListModel,
-  WishListItemModel,
-  PaymentModel,
-  DocumentModel,
-  ShipmentModel,
-  WarehouseInventoryModel,
-  TripModel,
-  PricingModel,
-  OverLandTravelModel,
-  HotelModel,
-  BookingModel
-
+  users,
+  batches,
+  cooperatives,
+  deliveries,
+  quality_reports,
+  export_orders,
+  shipments,
+  warehouse_inventory,
+  products,
+  prices,
+  reviews,
+  orders,
+  carts,
+  cart_items,
+  wish_lists,
+  wishList_item,
+  payments,
+  documents,
+  pricing,
+  trips,
+  hotels,
+  overland_travels,
+  bookings
 ];
 
 const initializeDatabase = async() => {

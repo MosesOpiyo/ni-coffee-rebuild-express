@@ -1,6 +1,6 @@
 const express = require('express');
 const RouterController = require('../controllers/reviewController')
-const limiter = require('../../../../middleware/rateLimitingMiddleware')
+const { limiter } = require('../../../../middleware/rateLimitingMiddleware')
 const { verifyToken, verifyRole } = require('../../../auth/middleware/middleware');
 
 const ROLES = require('../../../auth/middleware/roles');

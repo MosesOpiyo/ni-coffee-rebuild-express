@@ -1,5 +1,5 @@
 const db = require('../../../../../config/database');
-const Contract = require('./contracts/contractClass');
+const Contract = require('./contractClass');
 
 class ContractRepository {
     static async create(contractData) {

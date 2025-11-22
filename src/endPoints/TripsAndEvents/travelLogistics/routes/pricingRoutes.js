@@ -2,7 +2,7 @@ const express = require('express');
 const PricingController = require('../controllers/pricingController');
 const { verifyToken, verifyRole } = require('../../../auth/middleware/middleware');
 const ROLES = require('../../../auth/middleware/roles');
-const limiter = require('../../../../middleware/rateLimitingMiddleware')
+const { limiter } = require('../../../../middleware/rateLimitingMiddleware')
 const pricingRouter = express.Router();
 
 pricingRouter.get('/',limiter, verifyToken, verifyRole([ROLES.ADMIN, ROLES.MANAGER]), PricingController.getAllPricing);

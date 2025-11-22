@@ -1,6 +1,6 @@
 const express = require('express');
 const CartController = require('../controllers/cartController');
-const limiter = require('../../../../middleware/rateLimitingMiddleware')
+const { limiter } = require('../../../../middleware/rateLimitingMiddleware')
 const cartRouter = express.Router();
 
 // Routes

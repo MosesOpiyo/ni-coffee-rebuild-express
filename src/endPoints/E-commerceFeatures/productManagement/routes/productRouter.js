@@ -1,6 +1,6 @@
 const express = require('express');
 const ProductController = require('../controllers/productController')
-const limiter = require('../../../../middleware/rateLimitingMiddleware')
+const { limiter } = require('../../../../middleware/rateLimitingMiddleware')
 const { verifyToken, verifyRole } = require('../../../../middleware/authMiddleware')
 
 const productRouter = express.Router();

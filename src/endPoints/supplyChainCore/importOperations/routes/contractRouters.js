@@ -1,7 +1,7 @@
 const express = require('express');
 const ContractController = require('../controllers/contractController');
 const { verifyToken, verifyRole } = require('../../../auth/middleware/middleware');
-const limiter = require('../../../../middleware/rateLimitingMiddleware')
+const { limiter } = require('../../../../middleware/rateLimitingMiddleware')
 const ROLES = require('../../../auth/middleware/roles');
 const contractRouter = express.Router();
 

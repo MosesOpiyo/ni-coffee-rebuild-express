@@ -1,6 +1,6 @@
 const express = require('express');
 const wishListController = require('../controllers/wishListController');
-const limiter = require('../../../../middleware/rateLimitingMiddleware')
+const { limiter } = require('../../../../middleware/rateLimitingMiddleware')
 const wishListrouter = express.Router();
 
 // Routes

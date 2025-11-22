@@ -1,6 +1,6 @@
 const express = require('express');
 const OrderController = require('../controllers/orderController');
-const limiter = require('../../../../middleware/rateLimitingMiddleware')
+const { limiter } = require('../../../../middleware/rateLimitingMiddleware')
 const orderRoutes = express.Router();
 
 // Routes

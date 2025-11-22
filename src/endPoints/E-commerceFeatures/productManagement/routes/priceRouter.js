@@ -1,6 +1,6 @@
 const express = require('express');
 const PriceController = require('../controllers/priceController')
-const limiter = require('../../../../middleware/rateLimitingMiddleware')
+const { limiter } = require('../../../../middleware/rateLimitingMiddleware')
 const { verifyToken, verifyRole } = require('../../../../middleware/authMiddleware')
 
 const priceRouter = express.Router();

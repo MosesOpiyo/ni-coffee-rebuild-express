@@ -11,4 +11,4 @@ const limiter = rateLimit({
   message: 'Too many requests. Try again later.',
 });
 
-module.exports = { limiter, loginLimiter};
+module.exports = { limiter, loginLimiter };

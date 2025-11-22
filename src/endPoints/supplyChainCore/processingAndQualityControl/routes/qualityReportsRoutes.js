@@ -3,7 +3,7 @@ const router = require('express');
 const qualityRouter = router.Router();
 const QualityReportController = require('../controllers/qualityReportController');
 const { verifyToken, verifyRole } = require('../../../auth/middleware/middleware');
-const limiter = require('../../../../middleware/rateLimitingMiddleware')
+const { limiter } = require('../../../../middleware/rateLimitingMiddleware')
 const ROLES = require('../../../auth/middleware/roles');
 
 qualityRouter.get('/',limiter, verifyToken, verifyRole([ROLES.ADMIN, ROLES.QUALITY_CONTROLLER]), QualityReportController.getAllQualityReports);
