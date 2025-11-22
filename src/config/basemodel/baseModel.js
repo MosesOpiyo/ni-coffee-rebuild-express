@@ -11,6 +11,15 @@ class BaseModel {
       );
     `;
   }
+
+  toJSON() {
+    // Return all own enumerable properties
+    const obj = {};
+    for (let key of Object.keys(this)) {
+      obj[key] = this[key];
+    }
+    return obj;
+  }
 }
 
 module.exports = BaseModel;

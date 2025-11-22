@@ -2,7 +2,7 @@ const express = require('express');
 const AuthController = require('../controllers/authControllers');
 const { verifyToken, verifyRole } = require('../../../middleware/authMiddleware');
 const sanitizeInput = require('../../../middleware/inputSecurityMiddleware');
-const loginLimiter = require('../../../middleware/rateLimitingMiddleware');
+const { loginLimiter } = require('../../../middleware/rateLimitingMiddleware');
 
 const authRouter = express.Router();
 

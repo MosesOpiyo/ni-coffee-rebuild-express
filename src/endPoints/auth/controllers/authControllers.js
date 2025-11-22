@@ -1,7 +1,7 @@
 const supabase = require('../../../config/supabase.js');
 const ROLES = require('../middleware/roles.js');
 
-const { create, findById } = require('../models/User/UserRepository.js');
+const UserRepository = require('../models/User/UserRepository.js');
 
 const VALID_ROLES = Object.values(ROLES);
 
@@ -43,16 +43,13 @@ class AuthController {
             if (authResponse.error) throw new Error(authResponse.error.message);
 
             // Create user profile in database
-            const userProfile = create({
+            const userProfile = await UserRepository.create({
                 id: authResponse.data.user.id,
                 email,
                 phone_number,
                 full_name,
-                role,
-                created_at: new Date().toISOString(),
-                updated_at: new Date().toISOString()
+                role
             })
-
             res.status(201).json({ message: 'Registration successful', user: userProfile });
         } catch (error) {
             res.status(400).json({ error: error.message });
@@ -137,7 +134,7 @@ class AuthController {
         }
     }
 
-    async resetPassword(req, res) {
+    async resetPassword(req, res)  {
         try {
             const { email } = req.body;
             const authResponse = await supabase.auth.api.resetPasswordForEmail(email, {
@@ -166,3 +163,4 @@ class AuthController {
 }
 
 module.exports = new AuthController();
+

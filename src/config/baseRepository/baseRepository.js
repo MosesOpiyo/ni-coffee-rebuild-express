@@ -42,9 +42,9 @@ class BaseRepository {
             VALUES (${placeholders}, NOW(), NOW())
             RETURNING *
         `;
-
+        
         const rows = await db.query(query, values);
-        return new this.ModelClass(rows[0]);
+        return new this.ModelClass(rows[0]).toJSON();
     }
 
     async update(id, data) {
