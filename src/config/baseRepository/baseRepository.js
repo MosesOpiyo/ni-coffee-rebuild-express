@@ -76,7 +76,7 @@ class BaseRepository {
 
     async rawQuery(query, params = []) {
         const rows = await db.query(query, params);
-        return rows;
+        return rows.length ? new this.ModelClass(rows[0]) : null;
     }
 }
 

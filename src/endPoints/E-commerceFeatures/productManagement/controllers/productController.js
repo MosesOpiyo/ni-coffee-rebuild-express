@@ -1,9 +1,10 @@
 const ProductRepository = require('../models/productRepository');
 
+
 class ProductController {
     async getAllProducts(req, res) {
         try {
-            const products = await ProductRepository.findAll;
+            const products = await ProductRepository.findAll();
             if (!products) {
                 return res.status(404).json({ error: 'No products found' });
             } else {
@@ -23,6 +24,21 @@ class ProductController {
         } catch (error) {
             res.status(500).json({ error: error.message });
         }};
+
+    async searchProducts(req, res) {
+        try {
+            const { query } = req.query;
+            const products = await ProductRepository.rawQuery('SELECT * FROM products WHERE name ILIKE $1', [query])
+            if (!products) {
+                res.status(404).json({ error: 'No products found' });
+            } else {
+                res.status(200).json(products);
+            }
+        }
+        catch (error) {
+            res.status(500).json({ error: error.message });
+        }
+    }
 
     async createProduct(req, res) {
         try {
@@ -57,7 +73,7 @@ class ProductController {
             res.status(500).json({ error: error.message });
         }
     }
-
 }
 
 module.exports = new ProductController();
+

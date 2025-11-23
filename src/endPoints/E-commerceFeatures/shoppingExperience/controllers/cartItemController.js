@@ -1,5 +1,8 @@
 // controllers/cartItemController.js
 const CartItemRepository = require('../models/CartItems/cartItemRepository');
+const CartRepository = require('../models/Cart/cartRepository');
+const ProductRepository = require('../../productManagement/models/productRepository');
+            
 
 class CartItemController {
   async getAllCartItems(req, res) {
@@ -43,6 +46,27 @@ class CartItemController {
     }
   }
 
+  async addToCart(req, res) {
+        try {
+            const { productId, price, quantity } = req.body;
+            const { cartId } = req.params;
+            const cart = await CartRepository.findById(cartId);
+            if (!cart) {
+                return res.status(404).json({ error: 'Cart not found' });
+            }
+            const cartItem = await CartItemRepository.create({
+                cart_id: cartId,
+                product_id: productId,
+                price: price,
+                quantity: quantity
+            });
+            res.status(201).json(cartItem);
+
+        } catch (error) {
+            res.status(500).json({ error: error.message });
+        }
+  }
+
   async updateCartItem(req, res) {
     try {
       const { id } = req.params;
@@ -54,6 +78,22 @@ class CartItemController {
       res.status(500).json({ error: error.message });
     }
   }
+
+  async checkProductStockBeforeAddToCart(req, res, next) {
+        try {
+            const { productId, quantity } = req.body;
+            const product = await ProductRepository.findById(productId);
+            if (!product) {
+                return res.status(404).json({ error: 'Product not found' });
+            }
+            if (product.stock < quantity) {
+                return res.status(400).json({ error: 'Insufficient stock' });
+            }
+            next();
+        } catch (error) {
+            res.status(500).json({ error: error.message });
+        }
+    }
 
   async deleteCartItem(req, res) {
     try {

@@ -1,44 +1,18 @@
 const ReviewRepository = require('../models/Reviews/reviewsRepository')
 
 class ReviewController {
-    async getAllReviews (req, res) {
-        try {
-            const reviews = await ReviewRepository.findAll;
-            if (!reviews) {
-                return res.status(404).json({ error: 'No reviews found' });
-            } else {
-                res.status(200).json(reviews);
-            }
-        } catch (error) {
-            res.status(500).json({ error: error.message });
-        }
-    };
-
-    async getReviewByProductId (req, res) {
+    async getReviewsByProductId (req, res) {
         try {
             const { id } = req.params;
-            const review = await ReviewRepository.findMany('product_id', id);
-            if (!review) {
+            const reviews = await ReviewRepository.findMany('product_id', id);
+            if (!reviews) {
                 return res.status(404).json({ error: 'Batch not found' });
             }
-            res.status(200).json(review);
+            res.status(200).json(reviews);
         } catch (error) {
             res.status(500).json({ error: error.message });
         }
     };
-
-    // async getReviewByBuyerId (req, res) {
-    //     try {
-    //         const { id } = req.params;
-    //         const review = await ReviewRepository.findByBUyerId(id);
-    //         if (!review) {
-    //             return res.status(404).json({ error: 'Batch not found' });
-    //         }
-    //         res.status(200).json(review);
-    //     } catch (error) {
-    //         res.status(500).json({ error: error.message });
-    //     }
-    // };
 
     async createReview (req, res){
         try {
