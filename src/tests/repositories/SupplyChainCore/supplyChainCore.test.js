@@ -1,4 +1,5 @@
 const UserModel = require('../../../endPoints/auth/models/User/authModels');
+const PriceModel = require('../../../endPoints/E-commerceFeatures/productManagement/models/priceModel')
 const ProductModel = require('../../../endPoints/E-commerceFeatures/productManagement/models/productModel')
 const CooperativeModel = require('../../../endPoints/supplyChainCore/cooperativeManagement&Collection/models/Cooperatives/cooperativeModel')
 const BatchModel = require('../../../endPoints/supplyChainCore/cooperativeManagement&Collection/models/Batches/batchModel')
@@ -20,17 +21,32 @@ const { initDb,
   remove } = require('../../base/baseTest');
 
 beforeAll(async () => {
+    tables = {
+     users: new UserModel(),
+     cooperatives: new CooperativeModel(),
+     batches: new BatchModel(),
+     deliveries: new DeliveryModel(),
+     quality_reports: new QualityReportModel(),
+     export_orders: new ExportOrdermodel(),
+     documents: new DocumentModel(),
+     shipments: new ShipmentModel(),
+     prices: new PriceModel(),
+     products: new ProductModel(),
+     warehouse_inventory: new WareHouseInventoryModel(),
+    }
+
     const tablesSql = [
-        UserModel.getCreateTableQuery(),
-        CooperativeModel.getCreateTableQuery(),
-        BatchModel.getCreateTableQuery(),
-        DeliveryModel.getCreateTableQuery(),
-        QualityReportModel.getCreateTableQuery(),
-        ExportOrdermodel.getCreateTableQuery(),
-        DocumentModel.getCreateTableQuery(),
-        ShipmentModel.getCreateTableQuery(),
-        ProductModel.getCreateTableQuery(),
-        WareHouseInventoryModel.getCreateTableQuery()
+      tables.users.getCreateTableQuery(),
+      tables.cooperatives.getCreateTableQuery(),
+      tables.batches.getCreateTableQuery(),
+      tables.deliveries.getCreateTableQuery(),
+      tables.quality_reports.getCreateTableQuery(),
+      tables.export_orders.getCreateTableQuery(),
+      tables.documents.getCreateTableQuery(),
+      tables.shipments.getCreateTableQuery(),
+      tables.prices.getCreateTableQuery(),
+      tables.products.getCreateTableQuery(),
+      tables.warehouse_inventory.getCreateTableQuery(), 
     ]
     .map(sql => sql.trim().replace(/};?$/, ';'))
       .join('\n');
@@ -157,12 +173,23 @@ describe('🚢 Export Operations', () => {
 });
 
 describe('📦 Warehouse Inventory & Products', () => {
-  let productId, inventoryId;
+  let priceId,productId, inventoryId;
+
+  test('Create Price', async () => {
+    price = await create('prices', {
+      product_id: 1,
+      price_per_kg: 5.5,
+      currency: 'KES',
+  });
+    priceId = price.id
+    expect(price.price_per_kg).toBe(5.5);
+  });
+
 
   test('Create Product', async () => {
     product = await create('products', {
       name: 'Arabica Coffee',
-      price_per_kg: 5.5,
+      price_id: priceId,
       stock: 1000,
       grade: 'AA',
       origin: 'Kenya',

@@ -9,12 +9,9 @@ const ROLES = require('../../../auth/middleware/roles');
 const CartItemRoutes = express.Router();
 
 // Routes
-CartItemRoutes.get('/', limiter, CartItemController.getAllCartItems);
-CartItemRoutes.get('/:id', limiter, CartItemController.getCartItemById);
-CartItemRoutes.get('/cart/:cart_id', limiter, CartItemController.getItemsByCart);
-CartItemRoutes.post('/', limiter, CartItemController.createCartItem);
-CartItemRoutes.put('/:id', limiter, CartItemController.updateCartItem);
-CartItemRoutes.delete('/:id', limiter, CartItemController.deleteCartItem);
-CartItemRoutes.delete('/clear/:cart_id', limiter, CartItemController.clearCart);
+CartItemRouter.post('/:cartId/items', CartItemController.checkProductStockBeforeAddToCart, CartItemController.addToCart);
+CartItemRouter.delete('/:cartItemId', CartItemController.removeFromCart);
+CartItemRouter.put('/:cartItemId', CartItemController.updateCartItem);
+CartItemRouter.get('/:cartId/items', CartItemController.getCartItems);
 
 module.exports = CartItemRoutes;
